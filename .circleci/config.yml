@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 
 executors:
   py-executor:
@@ -27,7 +27,7 @@ jobs:
           key: deps9-{{ .Branch }}-{{ checksum "requirements_dev.txt" }}
           paths:
             - "venv"
-  
+
   test:
 
     executor: py-executor
