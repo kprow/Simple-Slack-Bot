@@ -40,8 +40,9 @@ jobs:
     executor: py-executor
 
     steps:
-      - attach-workspace:
-          at: .
+      - attach_workspace:
+          # Must be absolute path or relative path from working_directory
+          at: ~/project
       - run:
           name: Run tests and generate coverage
           command: |
