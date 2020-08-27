@@ -28,7 +28,7 @@ jobs:
             make test-and-generate-coverage
 
       - store_test_results:
-          path: tests/test_results
+          path: tests
 
       - run:
           name: Upload test coverage to Code Cov
