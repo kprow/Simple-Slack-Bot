@@ -4,7 +4,6 @@ executors:
   py-executor:
     docker:
       - image: circleci/python:3.8.2-buster
-
     working_directory: ~/project
 jobs:
 
