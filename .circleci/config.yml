@@ -26,8 +26,14 @@ jobs:
           key: deps9-{{ .Branch }}-{{ checksum "requirements_dev.txt" }}
           paths:
             - "venv"
-      - persist-to-workspace:
-          root: .
+      # Persist the specified paths (workspace/echo-output) into the workspace for use in downstream job. 
+      - persist_to_workspace:
+          # Must be an absolute path, or relative path from working_directory. This is a directory on the container which is 
+          # taken to be the root directory of the workspace.
+          root: ~
+          # Must be relative path from root
+          paths:
+            - project
 
   test:
 
