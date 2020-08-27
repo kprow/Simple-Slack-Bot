@@ -43,6 +43,8 @@ jobs:
       - attach_workspace:
           # Must be absolute path or relative path from working_directory
           at: ~/project
+      - restore_cache: # Find a cache corresponding to this specific requirements_dev.txt checksum. When this file has changed this lookup will fail which is good and intended
+          key: deps9-{{ .Branch }}-{{ checksum "requirements_dev.txt" }}
       - run:
           name: Run tests and generate coverage
           command: |
