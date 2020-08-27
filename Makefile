@@ -33,7 +33,7 @@ test: ## Runs the pytest suite
 	pytest
 
 test-and-generate-coverage: ## Runs the pytest suite and generates code coverage.
-	coverage run -m pytest && coverage report -m coverage html
+	coverage run -m pytest && coverage report -m && coverage html
 
 upload-coverage-to-codecov: ## Uploads the covde coverage to Code Cov IO
 	 bash <(curl -s https://codecov.io/bash)
