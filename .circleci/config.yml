@@ -1,10 +1,16 @@
 version: 2
-jobs:
-  build:
+
+executors:
+  py-executor:
     docker:
       - image: circleci/python:3.8.2-buster
 
     working_directory: ~/project
+jobs:
+
+  build:
+
+    executor: py-executor
 
     steps:
       - checkout
@@ -21,16 +27,28 @@ jobs:
           key: deps9-{{ .Branch }}-{{ checksum "requirements_dev.txt" }}
           paths:
             - "venv"
+  
+  test:
 
+    executor: py-executor
+
+    steps:
       - run:
           name: Run tests and generate coverage
           command: |
             make test-and-generate-coverage
 
-      - store_test_results:
-          path: htmlcov
-
       - run:
           name: Upload test coverage to Code Cov
           command : |
             make upload-coverage-to-codecov
+
+workflows:
+  version: 2
+
+  build-and-test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
