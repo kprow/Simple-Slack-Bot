@@ -36,7 +36,7 @@ jobs:
       - run:
           name: Run tests and generate coverage
           command: |
-            make test-and-generate-coverage
+            coverage run -m pytest && coverage report -m
 
       - run:
           name: Upload test coverage to Code Cov
